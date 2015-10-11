@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MentorConnectModelStoreContainer" CdmEntityContainer="DBMentorConnect">
+    <EntitySetMapping Name="MentorProfiles">
+      <EntityTypeMapping TypeName="MentorConnectModel.MentorProfile">
+        <MappingFragment StoreEntitySet="MentorProfile">
+          <ScalarProperty Name="fk_mentor_ID" ColumnName="fk_mentor_ID" />
+          <ScalarProperty Name="imgPath" ColumnName="imgPath" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MentorSchedules">
+      <EntityTypeMapping TypeName="MentorConnectModel.MentorSchedule">
+        <MappingFragment StoreEntitySet="MentorSchedule">
+          <ScalarProperty Name="fk_mentor_Id" ColumnName="fk_mentor_Id" />
+          <ScalarProperty Name="fk_day_Id" ColumnName="fk_day_Id" />
+          <ScalarProperty Name="fk_time_id" ColumnName="fk_time_id" />
+          <ScalarProperty Name="isMentoring" ColumnName="isMentoring" />
+          <ScalarProperty Name="fk_mentorship_id" ColumnName="fk_mentorship_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mentorships">
+      <EntityTypeMapping TypeName="MentorConnectModel.Mentorship">
+        <MappingFragment StoreEntitySet="Mentorship">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fk_mentorId" ColumnName="fk_mentorId" />
+          <ScalarProperty Name="fk_studentId" ColumnName="fk_studentId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="fk_subject" ColumnName="fk_subject" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentProfiles">
+      <EntityTypeMapping TypeName="MentorConnectModel.StudentProfile">
+        <MappingFragment StoreEntitySet="StudentProfile">
+          <ScalarProperty Name="fk_student_id" ColumnName="fk_student_id" />
+          <ScalarProperty Name="imgPath" ColumnName="imgPath" />
+          <ScalarProperty Name="clas" ColumnName="clas" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentSchedules">
+      <EntityTypeMapping TypeName="MentorConnectModel.StudentSchedule">
+        <MappingFragment StoreEntitySet="StudentSchedule">
+          <ScalarProperty Name="fk_student_Id" ColumnName="fk_student_Id" />
+          <ScalarProperty Name="fk_day_Id" ColumnName="fk_day_Id" />
+          <ScalarProperty Name="fk_time_id" ColumnName="fk_time_id" />
+          <ScalarProperty Name="fk_mentorship_id" ColumnName="fk_mentorship_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjects">
+      <EntityTypeMapping TypeName="MentorConnectModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="times">
+      <EntityTypeMapping TypeName="MentorConnectModel.time">
+        <MappingFragment StoreEntitySet="time">
+          <ScalarProperty Name="timeid" ColumnName="timeid" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MentorConnectModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="addr1" ColumnName="addr1" />
+          <ScalarProperty Name="addr2" ColumnName="addr2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phNo" ColumnName="phNo" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weekdays">
+      <EntityTypeMapping TypeName="MentorConnectModel.weekday">
+        <MappingFragment StoreEntitySet="weekday">
+          <ScalarProperty Name="dayid" ColumnName="dayid" />
+          <ScalarProperty Name="dayname" ColumnName="dayname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MentorSubjectMap" TypeName="MentorConnectModel.MentorSubjectMap" StoreEntitySet="MentorSubjectMap">
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="User_ID" />
+      </EndProperty>
+      <EndProperty Name="subject">
+        <ScalarProperty Name="id" ColumnName="subject_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="MentorResumes">
+      <EntityTypeMapping TypeName="MentorConnectModel.MentorResume">
+        <MappingFragment StoreEntitySet="MentorResume">
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+          <ScalarProperty Name="fk_mentorId" ColumnName="fk_mentorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserImages">
+      <EntityTypeMapping TypeName="MentorConnectModel.UserImage">
+        <MappingFragment StoreEntitySet="UserImage">
+          <ScalarProperty Name="contentType" ColumnName="contentType" />
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+          <ScalarProperty Name="fk_userId" ColumnName="fk_userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="MentorConnectModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="fk_mentorshipId" ColumnName="fk_mentorshipId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MentorScheduleRequests">
+      <EntityTypeMapping TypeName="MentorConnectModel.MentorScheduleRequest">
+        <MappingFragment StoreEntitySet="MentorScheduleRequest">
+          <ScalarProperty Name="fk_student_Id" ColumnName="fk_student_Id" />
+          <ScalarProperty Name="fk_mentorship_id" ColumnName="fk_mentorship_id" />
+          <ScalarProperty Name="isRequested" ColumnName="isRequested" />
+          <ScalarProperty Name="fk_time_id" ColumnName="fk_time_id" />
+          <ScalarProperty Name="fk_day_Id" ColumnName="fk_day_Id" />
+          <ScalarProperty Name="fk_mentor_Id" ColumnName="fk_mentor_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

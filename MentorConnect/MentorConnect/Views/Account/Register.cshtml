@@ -1,0 +1,105 @@
+﻿@model MentorConnect.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+@Styles.Render("~/Content/register")
+
+<div class="regTitle">
+    Create your MentorConnect Account
+</div>
+<div style="width:770px;padding-left:300px">
+    @using (Html.BeginForm())
+    {
+        <div style="float:left;width:50%" class="registerDiv">
+
+            @Html.ValidationSummary(true)
+            <div>
+                <span>Name</span>
+                <div>
+                    <div style="float:left;width:45%">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "", @placeholder = "First" })
+                    </div>
+                    <div style="float:right;width:45%">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "", @placeholder = "Last" })
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </div>
+
+            <div>
+                <span>Address 1</span>
+                @Html.TextBoxFor(m => m.Address1, new { @class = "" })
+                @Html.ValidationMessageFor(m => m.Address1)
+            </div>
+            <div>
+                <span>Address 2</span>
+                @Html.TextBoxFor(m => m.Address2, new { @class = "" })
+            </div>
+            <div>
+                <span>City</span>
+                @Html.TextBoxFor(m => m.City, new { @class = "" })
+                @Html.ValidationMessageFor(m => m.City)
+            </div>
+            <div>
+                <span>State</span>
+                @Html.TextBoxFor(m => m.State, new { @class = "" })
+                @Html.ValidationMessageFor(m => m.State)
+            </div>
+            <div>
+                <span>Zip Code</span>
+                @Html.TextBoxFor(m => m.ZipCode, new { @class = "" })
+                @Html.ValidationMessageFor(m => m.ZipCode)
+            </div>
+            <div>
+                <span>Mobile Phone</span>
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber)
+            </div>
+        </div>
+    <div style="float:right;width:50%" class="registerDiv">
+        <div>
+            <span>
+                User ID (your UTD Email ID)
+            </span>
+            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "@utdallas.edu", @class = "userID" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div>
+            <span>
+                Create a password
+            </span>
+            @Html.PasswordFor(m => m.Password, new { @class = "" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div>
+            <span>
+                Confirm your password
+            </span>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>
+        <div>
+            <span>
+                Enroll as
+            </span>
+            <div>
+                <div style="float:left;width:50%">
+                    <label>@Html.RadioButtonFor(m => m.EnrollAs, "1") Mentor</label>
+                </div>
+                <div style="float:right;width:50%">
+                    @Html.RadioButtonFor(m => m.EnrollAs, "2") Student
+                </div>
+            </div>
+            @Html.ValidationMessageFor(m => m.EnrollAs)
+        </div>
+        <div>
+            <input type="submit" value="Register" class="primaryButton" />
+        </div>
+    </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

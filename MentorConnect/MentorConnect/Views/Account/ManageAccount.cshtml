@@ -1,0 +1,182 @@
+﻿@model MentorConnect.Models.ManageAccountViewModel
+
+@{
+    ViewBag.Title = "Manage Account";
+    Layout = null;
+}
+@Styles.Render("~/Content/manageAccount.css")
+
+<h2 class="titleLabel">@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <hr />
+    <div class="form">
+        @using (Html.BeginForm("ManageAccount", "Account", FormMethod.Post, new { enctype = "multipart/form-data"}))
+        {
+            <div class="divForm">                    
+            <div class="textField">
+
+                <fieldset>
+                    <legend>Profile Picture</legend>
+                    <div>
+                        <output class="imagePreview" id="userImage"><img class="thumb" src="@Model.ImageFilename" /></output>
+                        <div class="fileForm">
+                            <p>@Html.TextBoxFor(model => model.ImageFile, new { type = "file" , id = "imageFile", name="files[]"})</p>
+                            <p>@Html.ValidationMessageFor(model => model.ImageFile)</p>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Name</legend>
+                    
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.FirstName)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.FirstName)</span>
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.LastName)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.LastName)</span>
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                    
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Address</legend>
+                   
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.Address1)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.Address1)</span>
+                            @Html.ValidationMessageFor(m => m.Address1)
+                        </div>
+
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.Address2)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.Address2)</span>
+                        </div>
+                    
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.City)</label>
+                        <span class="inputBox">@Html.EditorFor(m => m.City)</span>
+                        @Html.ValidationMessageFor(m => m.City)
+                    </div>
+
+                    
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.State)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.State)</span>
+                            @Html.ValidationMessageFor(m => m.State)
+                        </div>
+                        <div class="row">
+                            <label>@Html.LabelFor(m => m.Zip)</label>
+                            <span class="inputBox">@Html.EditorFor(m => m.Zip)</span>
+                            @Html.ValidationMessageFor(m => m.Zip)
+                        </div>
+                    
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.PhoneNumber)</label>
+                        <span class="inputBox">@Html.EditorFor(m => m.PhoneNumber)</span>
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </div>
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.Email)</label>
+                        <span class="inputBox">@Html.EditorFor(m => m.Email)</span>
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                </fieldset>    
+
+                <fieldset>
+                    <legend>Change Password</legend>
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.OldPassword)</label>
+                        <span class="inptBox">@Html.PasswordFor(m => m.OldPassword)</span>
+                        @Html.ValidationMessageFor(m => m.OldPassword)
+                    </div>
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.NewPassword)</label>
+                        <span class="inputBox">@Html.PasswordFor(m => m.NewPassword)</span>
+                    </div>
+                    <div class="row">
+                        <label>@Html.LabelFor(m => m.ConfirmPassword)</label>
+                        <span class="inputBox">@Html.PasswordFor(m => m.ConfirmPassword)</span>
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    </div>
+                </fieldset>
+            </div>
+
+            
+            @if (Model.IsMentor == true) {        // if user is a mentor.
+                <div class="resume">
+                    <h4>Resume</h4>
+                    <div class="fileForm">
+                        <p>@Html.TextBoxFor(model => model.PdfFile, new { type = "file", id = "pdfFile", name = "files[]" })</p>
+                        <p>@Html.ValidationMessageFor(model => model.PdfFile)</p>
+                    </div>
+                    <!--<a href="Url.Action("DisplayResumePdf")">Download Resume</a>-->
+                        <output id="pdfContainer">
+                            <iframe class="pdf" src="@Url.Action("DisplayResumePdf")">
+                                <p>
+                                    It appears you don't have a PDF plugin for this browser.
+                                    No problem, you can still <a href="@Url.Action("DisplayResumePdf")"> download the PDF file.</a>
+                                </p>
+                            </iframe>
+                        </output>
+                </div>
+            }
+            </div>
+            
+            <div class="submit">
+                <div>
+                    <input type="submit" class="submit" value="Submit" />
+                </div>
+            </div>
+
+
+
+        }
+    </div>
+</div>
+
+<script>
+    function handleImgFileSelect(evt) {
+        var files = evt.target.files;
+
+        var f = files[0];       // only get the first file
+
+        // Only process image files
+        if (!f.type.match('image.*')) {
+            return;
+        }
+
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onload = (function (theFile) {
+            return function (e) {
+                // Render image
+                document.getElementById('userImage').innerHTML = ['<img class="thumb" src="', e.target.result,
+                    '" title="', escape(theFile.name), '"/>'].join('');
+                
+            };
+        })(f);
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+    }
+
+    function handlePdfFileSelect(evt) {
+        document.getElementById('pdfContainer').innerHTML = "";     // clear the resume preview
+    }
+
+    document.getElementById('imageFile').addEventListener('change', handleImgFileSelect, false);
+    document.getElementById('pdfFile').addEventListener('change', handlePdfFileSelect, false);
+</script>

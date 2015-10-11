@@ -1,0 +1,256 @@
+﻿@model MentorConnect.Models.WriteReviewViewModel
+
+@{
+    ViewBag.Title = "WriteReview";
+    Layout = null;
+}
+@Styles.Render("~/Content/writeReview")
+@Scripts.Render("~/bundles/writeReview")
+
+<span class="mentorReviewTitle">Mentor</span>
+
+    @Html.HiddenFor(m => m.MentorshipId, new { id="mshipID" })
+
+    <div class="reviewHolder">
+        <div class="mentorshipSummary">
+            <div class="imagePreview">
+                <img class="thumb" src="@Model.ImageFilename" />
+            </div>
+            <p class="details">Name: @Html.DisplayFor(m => m.MentorName)</p>
+            <p class="details">Email: @Html.DisplayFor(m => m.Email)</p>
+            <p class="details">Subject: @Html.DisplayFor(m => m.Subject)</p>
+        </div>
+
+        <div class="review">
+
+            <div class="rating">
+                <span><img class="star1" src="/Images/star-empty.png" /></span><span><img class="star2" src="/Images/star-empty.png" /></span><span><img class="star3" src="/Images/star-empty.png" /></span><span><img class="star4" src="/Images/star-empty.png" /></span><span><img class="star5" src="/Images/star-empty.png" /></span>
+                <span class="ratingErrorMsg">@Html.ValidationMessageFor(m => m.Rating)</span>
+                <span>@Html.TextBoxFor(m => m.Rating, new { @class = "ratingBox", id="rating" })</span>
+                <span class="ratingDescription"></span>
+            </div>
+
+            <div>
+                <div>@Html.LabelFor(m => m.Comment)</div>
+                @Html.TextAreaFor(m => m.Comment, new { @class = "commentArea",id="comments" })
+            </div>
+            <div class="submit">
+                <input type="button" class="submit" value="Submit" onclick="submitReview()" />
+            </div>
+        </div>
+    </div>     
+
+
+<script>
+    function loadRatingData() {
+        if ($(".ratingBox").val() == 1) {
+            $(".ratingDescription").text("Very Bad");
+            $(".star1").attr("src", "/Images/star-full.png");
+        }
+        if ($(".ratingBox").val() == 2) {
+            $(".ratingDescription").text("Bad");
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+        }
+        if ($(".ratingBox").val() == 3) {
+            $(".ratingDescription").text("Okay");
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+        }
+        if ($(".ratingBox").val() == 4) {
+            $(".ratingDescription").text("Good");
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+        }
+        if ($(".ratingBox").val() == 5) {
+            $(".ratingDescription").text("Very Good");
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-full.png");
+        }
+
+        $(".ratingDescription").hide();
+    }
+
+    function onOut() {
+        if ($(".ratingBox").val() > 0) {
+            $(".ratingErrorMsg").hide();
+        }
+        else {
+            $(".ratingErrorMsg").show();
+        }
+
+        if ($(".ratingBox").val() < 1) {
+            $(".ratingDescription").text("");
+            $(".ratingDescription").hide();
+            $(".star1").attr("src", "/Images/star-empty.png");
+            $(".star2").attr("src", "/Images/star-empty.png");
+            $(".star3").attr("src", "/Images/star-empty.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+        }
+        else if ($(".ratingBox").val() == 1)
+        {
+            $(".ratingDescription").text("Very Bad");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-empty.png");
+            $(".star3").attr("src", "/Images/star-empty.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+        }
+        else if ($(".ratingBox").val() == 2) {
+            $(".ratingDescription").text("Bad");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-empty.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+        }
+        else if ($(".ratingBox").val() == 3) {
+            $(".ratingDescription").text("Okay");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+        }
+        else if ($(".ratingBox").val() == 4) {
+            $(".ratingDescription").text("Good");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+        }
+        else if ($(".ratingBox").val() == 5) {
+            $(".ratingDescription").text("Very Good");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-full.png");
+        }
+
+        
+    }
+
+    $(".star1")
+        .mouseover(function () {
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".ratingDescription").text("Very Bad");
+            $(".ratingDescription").show();
+            $(".ratingErrorMsg").hide();
+        })
+        .mouseout(onOut)
+        .click(function () {
+            $(".ratingBox").attr("value", 1);
+            $(".ratingDescription").text("Very Bad");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-empty.png");
+            $(".star3").attr("src", "/Images/star-empty.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+            $(".ratingErrorMsg").hide();
+        });
+
+    $(".star2")
+        .mouseover(function () {
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".ratingDescription").text("Bad");
+            $(".ratingDescription").show();
+            $(".ratingErrorMsg").hide();
+        })
+        .mouseout(onOut)
+        .click(function () {
+            $(".ratingBox").attr("value", 2);
+            $(".ratingDescription").text("Bad");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-empty.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+            $(".ratingErrorMsg").hide();
+        });
+
+    $(".star3")
+        .mouseover(function () {
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".ratingDescription").text("Okay");
+            $(".ratingDescription").show();
+            $(".ratingErrorMsg").hide();
+        })
+        .mouseout(onOut)
+        .click(function () {
+            $(".ratingBox").attr("value", 3);
+            $(".ratingDescription").text("Okay");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-empty.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+            $(".ratingErrorMsg").hide();
+        });
+
+    $(".star4")
+        .mouseover(function () {
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".ratingDescription").text("Good");
+            $(".ratingDescription").show();
+            $(".ratingErrorMsg").hide();
+        })
+        .mouseout(onOut)
+        .click(function () {
+            $(".ratingBox").attr("value", 4);
+            $(".ratingDescription").text("Good");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-empty.png");
+            $(".ratingErrorMsg").hide();
+        });
+
+    $(".star5")
+        .mouseover(function () {
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-full.png");
+            $(".ratingDescription").text("Very Good");
+            $(".ratingDescription").show();
+            $(".ratingErrorMsg").hide();
+        })
+        .mouseout(onOut)
+        .click(function () {
+            $(".ratingBox").attr("value", 5);
+            $(".ratingDescription").text("Very Good");
+            $(".ratingDescription").show();
+            $(".star1").attr("src", "/Images/star-full.png");
+            $(".star2").attr("src", "/Images/star-full.png");
+            $(".star3").attr("src", "/Images/star-full.png");
+            $(".star4").attr("src", "/Images/star-full.png");
+            $(".star5").attr("src", "/Images/star-full.png");
+            $(".ratingErrorMsg").hide();
+        });
+</script>

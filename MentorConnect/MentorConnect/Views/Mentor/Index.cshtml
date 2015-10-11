@@ -1,0 +1,57 @@
+﻿@model MentorConnect.Models.MentorRequestsModel
+@using MentorConnect.Models
+@{
+    ViewBag.Title = "Index";
+    int i = 1;
+}
+
+@Scripts.Render("~/bundles/mentorHomeIndex")
+@Styles.Render("~/Content/MentorHome")
+<div id="mtabs">
+    <div class="headDiv">
+        <ul>
+            <li>
+                <a href="#resDiv">All Requests</a>
+            </li>
+            <li>
+                <a href="#mshipListDiv" onclick="DisplayAllMentorShips()">Your Mentorships</a>
+            </li>
+            <li>
+                <a href="#ManageAccount" onclick="DisplayManageAccount()">Manage Account</a>
+            </li>
+            <li>
+                <a href="#EditProfile" onclick="DisplayEditProfile()">Edit Profile</a>
+            </li>
+        </ul>
+    </div>
+    <div class="resDiv" id="resDiv">
+        <span class="titleLabelReq">All Requests</span>
+        <table class="schRequestTable">
+            <tr><th class="schReqTh">ID</th><th class="schReqTh">Student</th><th class="schReqTh">Subject Requested</th><th class="schReqTh">Request</th></tr>
+            @foreach (MentorshipRequest eRequest in Model._allrequests)
+            {
+                <tr><td class="schReqTh">@i</td><td class="schReqTh">@eRequest.stuname</td><td class="schReqTh">@eRequest.subject_name</td><td class="schReqTh"><a href="#" onclick="DisplayFullScheduleRequest(@eRequest.mentorshipID)">Click to view the request</a></td></tr>
+                i++;
+            }
+        </table>
+    </div>
+    <div id="mshipListDiv">
+
+    </div>
+    <div id="ManageAccount">
+
+    </div>
+    <div id="EditProfile">
+
+    </div>
+</div>
+<div id="SchReq" title="Student Request">
+
+</div>
+
+            
+
+
+
+
+

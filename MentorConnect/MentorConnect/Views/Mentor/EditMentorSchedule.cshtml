@@ -1,0 +1,195 @@
+﻿@model MentorConnect.Models.MentorScheduleModel
+@using MentorConnect.Models
+
+@{
+    ViewBag.Title = "Edit Mentor Schedule";
+    Layout = null;
+}
+@Styles.Render("~/Content/MentorSchedule")
+@Scripts.Render("~/bundles/editmentorSchedule")
+@using (Html.BeginForm("UpdateMentorProfile", "Mentor", FormMethod.Post))
+{
+    <div>
+
+        <div class="mtrDetails">
+            <table class="mtrDetailsTbl">
+                <tr>
+                    <td>Name: @Model.name @Html.HiddenFor(m => m.name)</td>
+                    <td>Subject: @Html.DropDownListFor(m => m.subject, Model._subjects)</td>
+                </tr>
+                <tr>
+                    <td>Major: @Html.TextBoxFor(m => m.major)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="mtrImg">
+            <img src="@Model.imgpath" />
+            @Html.HiddenFor(m => m.imgpath)
+        </div>
+        @Html.HiddenFor(m => m._mentorId)
+        @Html.HiddenFor(m => m.studentId)
+    </div>
+
+
+    <div class="tblSch">
+        <div>
+            <span class="schTitle">Mentor Schedule</span>
+            <div class="key1"></div>Available
+        </div>
+        <table class="scheduleTable">
+            <tr><th></th><th>10:00 AM</th><th>11:00 AM</th><th>12:00 PM</th><th>1:00 PM</th><th>02:00 PM</th><th>03:00 PM</th><th>04:00 PM</th><th>05:00 PM</th><th>06:00 PM</th><th>07:00 PM</th><th>08:00 PM</th><th>09:00 PM</th><th>10:00 PM</th></tr>
+            <tr>
+                <td>Sun @Html.HiddenFor(m => m._schedule[0].day)</td>
+                @for (int i = 0; i < Model._schedule[0]._timeandRequest.Count; i++)
+                {
+                    string newID = "1_" + Model._schedule[0]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[0]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Mon @Html.HiddenFor(m => m._schedule[1].day)</td>
+                @for (int i = 0; i < Model._schedule[1]._timeandRequest.Count; i++)
+                {
+                    string newID = "2_" + Model._schedule[1]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[1]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Tue @Html.HiddenFor(m => m._schedule[2].day)</td>
+                @for (int i = 0; i < Model._schedule[2]._timeandRequest.Count; i++)
+                {
+                    string newID = "3_" + Model._schedule[2]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[2]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Wed @Html.HiddenFor(m => m._schedule[3].day)</td>
+                @for (int i = 0; i < Model._schedule[3]._timeandRequest.Count; i++)
+                {
+                    string newID = "4_" + Model._schedule[3]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[3]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Thu @Html.HiddenFor(m => m._schedule[4].day)</td>
+                @for (int i = 0; i < Model._schedule[4]._timeandRequest.Count; i++)
+                {
+                    string newID = "5_" + Model._schedule[4]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[4]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Fri @Html.HiddenFor(m => m._schedule[5].day)</td>
+                @for (int i = 0; i < Model._schedule[5]._timeandRequest.Count; i++)
+                {
+                    string newID = "6_" + Model._schedule[5]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[5]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+            <tr>
+                <td>Sat @Html.HiddenFor(m => m._schedule[6].day)</td>
+                @for (int i = 0; i < Model._schedule[6]._timeandRequest.Count; i++)
+                {
+                    string newID = "7_" + Model._schedule[6]._timeandRequest[i].timeId.ToString();
+                    string newIDBtn = newID + "_btn";
+                    if (Model._schedule[6]._timeandRequest[i].isMentorAvailable == 0)
+                    {
+                        <td><input type="button" class="notAvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" /></td>
+                    }
+                    else
+                    {
+                        <td><input type="button" class="AvailBtn" id="@newIDBtn" /></td>
+                    }
+
+                    @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].timeId)
+                    @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].isMentorAvailable, new { id = newID })
+
+                }
+            </tr>
+        </table>
+    </div>
+
+    <div class="footDiv">
+        <div class="commentsDiv">
+            <span>About</span>
+            @Html.TextAreaFor(r => r.description, new { @class = "commentsArea" })
+        </div>
+        <div class="reqBtnDiv">
+            <input type="submit" value="Update Profile" class="requestButton" />
+        </div>
+    </div>
+
+}

@@ -1,0 +1,119 @@
+﻿.scheduleTable{
+    border-collapse:collapse;
+}
+.scheduleTable td{
+    border:1px solid;    
+    width:75px;  
+    text-align:center;  
+}
+.notAvailBtn{
+   width:93px;   
+   height:46px;
+   padding:10px;
+}
+.clashBtn{
+   background-color:#ff0000;
+   width:93px;   
+   height:46px;
+   padding:10px;
+}
+.AvailBtn{
+    background-color:#72e650;
+    width:93px;    
+    height:46px;
+    cursor:pointer;
+    padding:10px;
+}
+.SelectedBtn{
+    background-color:#ffd800;
+    width:93px;
+    height:46px;
+    cursor:pointer;
+    padding:10px;
+}
+
+.mtrDetails{
+    float:left;
+    width:80%;
+}
+.mtrImg{
+    float:right;
+    height:150px;
+    width:20%;
+    text-align:right;
+}
+.mtrDetailsTbl{
+    border-collapse:collapse;
+    border:none;
+    padding:10px;
+    
+}
+.mtrDetailsTbl td{
+     padding:10px;
+     text-align:left;
+}
+
+.mtrImg img{
+    width:135px;
+    height:135px;
+}
+
+.tblSch{
+    padding-top:30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.commentsDiv{
+    width:660px;
+    height:100px;
+    float:left;
+}
+.commentsArea{
+    width:660px;
+    height:100px;
+}
+
+.reqBtnDiv{
+    width:660px;
+    height:100px;
+    padding-top:16px;
+    padding-left:10px;
+    float:left;
+}
+.requestButton{
+    width:660px;
+    height:108px;    
+    background-color:#AC258F;
+    color:#FFFFFF;
+    font-size:25pt;
+}
+.footDiv{
+    height:112px;   
+    padding-top:10px;
+    width:100%;
+}
+
+.key1{
+    background-color:#72e650;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.key2{
+    background-color:#ffd800;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.key3{
+    background-color:#ff0000;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.schTitle{
+    padding:5px;
+    font-size:20pt;
+    font-weight:bold;
+}

@@ -1,0 +1,19 @@
+﻿.mshipListTable{
+    border-collapse:collapse;    
+}
+.mshipListTable td,th{
+    border:1px solid;    
+    text-align:center;        
+}
+.c1{
+    width:200px;
+}
+.c2{
+    width:200px;
+}
+.c3{
+    width:200px;
+}
+.c4{
+    width:300px;
+}

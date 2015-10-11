@@ -1,0 +1,233 @@
+﻿@model MentorConnect.Models.MentorScheduleModel
+@using MentorConnect.Models
+
+@{
+    ViewBag.Title = "MentorSchedule";
+}
+@Styles.Render("~/Content/MentorSchedule")
+@Scripts.Render("~/bundles/mentorSchedule")
+
+@using (Html.BeginForm("SubmitScheduleRequest","Student", FormMethod.Post))
+{
+<div>
+    
+    <div class="mtrDetails">
+        <table class="mtrDetailsTbl">
+            <tr>
+                <td>Name: @Model.name @Html.HiddenFor(m=>m.name)</td><td>Subject: @Model.subjectName @Html.HiddenFor(m => m.subject) @Html.HiddenFor(m => m.subjectName)</td>
+            </tr>
+            <tr>
+                <td>Major: @Model.major @Html.HiddenFor(m => m.major)</td>
+                <td>Description: @Model.description @Html.HiddenFor(m => m.description)</td>
+            </tr>
+        </table>
+        <div style="width:100%;padding-left:600px;">@Html.ValidationMessage("error")</div>
+    </div>
+    <div class="mtrImg">
+        <img src="@Model.imgpath" />
+        @Html.HiddenFor(m => m.imgpath)
+    </div>
+        
+    @Html.HiddenFor(m => m._mentorId)
+    @Html.HiddenFor(m => m.studentId)
+</div>
+
+
+<div class="tblSch">
+    <div>
+        <span class="schTitle">Mentor Schedule</span>
+        <div class="key1"></div>Available
+        <div class="key2"></div>Requested
+        <div class="key3"></div>Conflicts with your schedule
+                
+    </div>
+    <table class="scheduleTable">
+        <tr><th></th><th>10:00 AM</th><th>11:00 AM</th><th>12:00 PM</th><th>1:00 PM</th><th>02:00 PM</th><th>03:00 PM</th><th>04:00 PM</th><th>05:00 PM</th><th>06:00 PM</th><th>07:00 PM</th><th>08:00 PM</th><th>09:00 PM</th><th>10:00 PM</th></tr>
+        <tr>
+            <td>Sun @Html.HiddenFor(m => m._schedule[0].day)</td>
+            @for (int i = 0; i < Model._schedule[0]._timeandRequest.Count; i++)
+            {
+                string newID = "1_" + Model._schedule[0]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID+"_btn";
+                if (Model._schedule[0]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[0]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" />@Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isRequested)</td>
+                }
+                else if (Model._schedule[0]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn"/>@Html.HiddenFor(t => t._schedule[0]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[0]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+        <tr>
+            <td>Mon @Html.HiddenFor(m => m._schedule[1].day)</td>
+            @for (int i = 0; i < Model._schedule[1]._timeandRequest.Count; i++)
+            {
+                string newID = "2_" + Model._schedule[1]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[1]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[1]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[1]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[1]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[1]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+        <tr>
+            <td>Tue @Html.HiddenFor(m => m._schedule[2].day)</td>
+            @for (int i = 0; i < Model._schedule[2]._timeandRequest.Count; i++)
+            {
+                string newID = "3_" + Model._schedule[2]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[2]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[2]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[2]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[2]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[2]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+        <tr>
+            <td>Wed @Html.HiddenFor(m => m._schedule[3].day)</td>
+            @for (int i = 0; i < Model._schedule[3]._timeandRequest.Count; i++)
+            {
+                string newID = "4_" + Model._schedule[3]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[3]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[3]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[3]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[3]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[3]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+        <tr>
+            <td>Thu @Html.HiddenFor(m => m._schedule[4].day)</td>
+            @for (int i = 0; i < Model._schedule[4]._timeandRequest.Count; i++)
+            {
+                string newID = "5_" + Model._schedule[4]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[4]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[4]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[4]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[4]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[4]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+        <tr>
+            <td>Fri @Html.HiddenFor(m => m._schedule[5].day)</td>
+            @for (int i = 0; i < Model._schedule[5]._timeandRequest.Count; i++)
+            {
+                string newID = "6_" + Model._schedule[5]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[5]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[5]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[5]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[5]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+            @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].timeId)
+            @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].isMentorAvailable)
+            @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].isFuture)
+            @Html.HiddenFor(m => m._schedule[5]._timeandRequest[i].isClashing)
+            }
+        </tr>
+        <tr>
+            <td>Sat @Html.HiddenFor(m => m._schedule[6].day)</td>
+            @for (int i = 0; i < Model._schedule[6]._timeandRequest.Count; i++)
+            {
+                string newID = "7_" + Model._schedule[6]._timeandRequest[i].timeId.ToString();
+                string newIDBtn = newID + "_btn";
+                if (Model._schedule[6]._timeandRequest[i].isMentorAvailable == 0 || !Model._schedule[6]._timeandRequest[i].isFuture)
+                {
+                    <td><input type="button" class="notAvailBtn" /></td>
+                }
+                else if (Model._schedule[6]._timeandRequest[i].isClashing)
+                {
+                    <td><input type="button" class="clashBtn" />@Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].isRequested)</td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn" onclick="toggleButton('@newID')" id="@newIDBtn" />@Html.HiddenFor(t => t._schedule[6]._timeandRequest[i].isRequested, new { id = newID })</td>
+                }
+                @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].timeId)
+                @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].isMentorAvailable)
+                @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].isFuture)
+                @Html.HiddenFor(m => m._schedule[6]._timeandRequest[i].isClashing)
+
+            }
+        </tr>
+    </table>
+</div>
+
+<div class="footDiv">       
+    <div class="commentsDiv">
+        <span>Comments</span>
+        @Html.TextAreaFor(r => r.comment, new { @class = "commentsArea" })
+    </div>
+    <div class="reqBtnDiv">
+        <input type="submit" value="Request Mentorship" class="requestButton" />
+    </div>
+</div>
+
+}

@@ -1,0 +1,122 @@
+﻿.scheduleTable_d{
+    border-collapse:collapse;
+}
+.scheduleTable_d td{
+    border:1px solid;    
+    width:50px;    
+}
+.notAvailBtn_d{
+   width:67px;   
+   height:36px;
+   padding:10px;
+}
+.AvailBtn_d{
+    background-color:#72e650;
+    width:67px;    
+    height:36px;
+    cursor:pointer;
+    padding:10px;
+}
+.clashBtn_d{
+   background-color:#ff0000;
+   width:67px;   
+   height:36px;
+   padding:10px;
+}
+.SelectedBtn_d{
+    background-color:#ffd800;
+    width:67px;
+    height:38px;
+    cursor:pointer;
+    padding:10px;
+}
+
+.mtrDetails_d{
+    float:left;
+    width:80%;
+}
+.mtrImg_d{
+    float:right;
+    height:150px;
+    width:20%;
+    text-align:center;
+}
+.mtrDetailsTbl_d{
+    border-collapse:collapse;
+    border:none;
+    padding:10px;
+    
+}
+.mtrDetailsTbl_d td{
+     padding:10px;
+     text-align:left;
+}
+
+.mtrImg_d img{
+    width:105px;
+    height:105px;
+}
+
+.tblSch_d{
+    padding-top:30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.commentsDiv_d{
+    width:400px;
+    height:60px;
+    float:left;
+}
+.commentsArea_d{
+    width:400px;
+    height:60px;
+}
+
+.reqBtnDiv_d{
+    width:450px;
+    height:60px;
+    padding-top:20px;
+    padding-left:10px;
+    float:left;
+}
+.requestButton_d{
+    width:450px;
+    height:60px;    
+    background-color:#AC258F;
+    color:#FFFFFF;
+    font-size:25pt;
+}
+
+.footDiv_d{
+    padding-top:15px;
+    width:100%;
+}
+
+.key1_d{
+    background-color:#72e650;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.key2_d{
+    background-color:#ffd800;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.key3_d{
+    background-color:#ff0000;
+    width:50px;
+    height:30px;
+    display:inline-block;
+}
+.schTitle_d{
+    padding:5px;
+    font-size:20pt;
+    font-weight:bold;
+}
+.ui-widget{
+    font-family:Calibri;
+    font-size:1em;
+}

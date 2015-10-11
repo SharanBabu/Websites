@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bfb6dbf8779e49fd867628128ed87e57" Name="Diagram1">
+        <EntityTypeShape EntityType="MentorConnectModel.MentorProfile" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.MentorSchedule" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.Mentorship" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.StudentProfile" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.StudentSchedule" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.subject" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.time" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.User" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MentorConnectModel.weekday" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MentorConnectModel.fk_mentorProfileID" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorSchedule_mentor" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_Mentorship_Mentor" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorSchedule_day" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorSchedule_Mentorship" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorSchedule_time" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_Mentorship_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_StudentSchedule_Mentorship" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_StudentProfile_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_StudentSchedule_student" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_StudentSchedule_day" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.FK_StudentSchedule_time" ManuallyRouted="false" />
+        <AssociationConnector Association="MentorConnectModel.MentorSubjectMap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MentorConnectModel.MentorResume" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="MentorConnectModel.UserImage" Width="1.5" PointX="3" PointY="16.25" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorResumeMentorProfile" />
+        <AssociationConnector Association="MentorConnectModel.FK_UserImageUser" />
+        <EntityTypeShape EntityType="MentorConnectModel.Review" Width="1.5" PointX="10.5" PointY="6.375" />
+        <AssociationConnector Association="MentorConnectModel.FK_ReviewMentorship" />
+        <AssociationConnector Association="MentorConnectModel.FK_Mentorship_Mentorship_subject" />
+        <EntityTypeShape EntityType="MentorConnectModel.MentorScheduleRequest" Width="1.5" PointX="10.5" PointY="2.125" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorScheduleRequest_Mentor" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorScheduleRequest_day" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorScheduleRequest_Mentorship" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorScheduleRequest_Student" />
+        <AssociationConnector Association="MentorConnectModel.FK_MentorScheduleRequest_time" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,81 @@
+﻿@model MentorConnect.Models.MentorshipList
+@using MentorConnect.Models
+
+@{
+    Layout = null;
+    string userTypeLabel;
+    string username;
+    int i = 1;
+}
+@Scripts.Render("~/bundles/MentorshipList")
+@Styles.Render("~/Content/MentorshipList")
+
+<span class="titleLabelReq">Your Mentorships</span>
+<table class="mshipListTable">
+    @if (Model.isMentor)
+    {
+        userTypeLabel = "Student";
+    }
+    else
+    {
+        userTypeLabel = "Mentor";
+    }
+    <tr><th class="c1">ID</th><th class="c2">@userTypeLabel</th><th class="c3">Subject</th><th class="c4"></th></tr>
+    @foreach (MentorshipModel emodel in Model._allMShips)
+    {
+        if (Model.isMentor)
+        {
+            username = emodel.student;
+        }
+        else
+        {
+            username = emodel.mentor;
+        }
+        <tr>
+            <td>@i</td>
+            <td>@username</td>
+            <td>@emodel.subject</td>
+            <td>
+                @if (false)                
+                {
+                    if (Model.isMentor)
+                    {
+                        <a href="@Url.Action("StartMentorship", "Mentor", new { mshipid = emodel.mentorshipID})">Click to start</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("StartMentorship","Student", new { mshipid = emodel.mentorshipID})">Click to start</a>
+                    }
+                }
+                //else if (emodel.isPast)
+                else if (true)
+                {
+                    if (Model.isMentor)
+                    {
+                        <span>Completed</span>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="DisplayWriteReview(@emodel.mentorshipID)">Write Review</a>
+                    }
+                }
+                else if (emodel.isFuture)
+                {
+                    <span>Ongoing</span>
+                }
+                <span><a href="#" onclick="DisplayMShipSchedule(@emodel.mentorshipID)">Click to see the schedule</a></span>
+            </td>
+        </tr>
+                i++;
+    }
+</table>
+
+<div id="mshipSch" title="Mentorship Schedule">
+
+</div>
+<div id="writeReview" title="Write Mentor Review">
+
+</div>
+
+
+

@@ -1,0 +1,28 @@
+﻿.regTitle{
+    text-align:center;
+    font-size:35px;
+    color:#555555;
+    padding: 20px;
+}
+.registerDiv{
+    font-size:15pt;
+    background-color:#EEEEEE;
+    width: 385px;
+    line-height:30px;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:10px;
+    height: 480px;    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.registerDiv input[type="text"],input[type="password"]{
+    width:100%;
+    height:30px;
+}
+
+.userID[placeholder]{
+    text-align:right;
+}

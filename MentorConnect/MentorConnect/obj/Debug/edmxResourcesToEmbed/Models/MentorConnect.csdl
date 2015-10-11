@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MentorConnectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MentorProfile">
+    <Key>
+      <PropertyRef Name="fk_mentor_ID" />
+    </Key>
+    <Property Name="fk_mentor_ID" Type="Int32" Nullable="false" />
+    <Property Name="imgPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="major" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.fk_mentorProfileID" FromRole="MentorProfile" ToRole="User" />
+    <NavigationProperty Name="MentorSchedules" Relationship="Self.FK_MentorSchedule_mentor" FromRole="MentorProfile" ToRole="MentorSchedule" />
+    <NavigationProperty Name="Mentorships" Relationship="Self.FK_Mentorship_Mentor" FromRole="MentorProfile" ToRole="Mentorship" />
+    <NavigationProperty Name="MentorResume" Relationship="MentorConnectModel.FK_MentorResumeMentorProfile" FromRole="MentorProfile" ToRole="MentorResume" />
+    <NavigationProperty Name="MentorScheduleRequests" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Mentor" FromRole="MentorProfile" ToRole="MentorScheduleRequest" />
+  </EntityType>
+  <EntityType Name="MentorSchedule">
+    <Key>
+      <PropertyRef Name="fk_mentor_Id" />
+      <PropertyRef Name="fk_day_Id" />
+      <PropertyRef Name="fk_time_id" />
+    </Key>
+    <Property Name="fk_mentor_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_day_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_time_id" Type="Int32" Nullable="false" />
+    <Property Name="isMentoring" Type="Int32" Nullable="false" />
+    <Property Name="fk_mentorship_id" Type="Int32" />
+    <NavigationProperty Name="MentorProfile" Relationship="Self.FK_MentorSchedule_mentor" FromRole="MentorSchedule" ToRole="MentorProfile" />
+    <NavigationProperty Name="weekday" Relationship="Self.FK_MentorSchedule_day" FromRole="MentorSchedule" ToRole="weekday" />
+    <NavigationProperty Name="Mentorship" Relationship="Self.FK_MentorSchedule_Mentorship" FromRole="MentorSchedule" ToRole="Mentorship" />
+    <NavigationProperty Name="time" Relationship="Self.FK_MentorSchedule_time" FromRole="MentorSchedule" ToRole="time" />
+  </EntityType>
+  <EntityType Name="Mentorship">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_mentorId" Type="Int32" Nullable="false" />
+    <Property Name="fk_studentId" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="Int32" Nullable="false" />
+    <Property Name="fk_subject" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MentorProfile" Relationship="Self.FK_Mentorship_Mentor" FromRole="Mentorship" ToRole="MentorProfile" />
+    <NavigationProperty Name="MentorSchedules" Relationship="Self.FK_MentorSchedule_Mentorship" FromRole="Mentorship" ToRole="MentorSchedule" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Mentorship_Student" FromRole="Mentorship" ToRole="User" />
+    <NavigationProperty Name="StudentSchedules" Relationship="Self.FK_StudentSchedule_Mentorship" FromRole="Mentorship" ToRole="StudentSchedule" />
+    <NavigationProperty Name="Review" Relationship="MentorConnectModel.FK_ReviewMentorship" FromRole="Mentorship" ToRole="Review" />
+    <NavigationProperty Name="subject" Relationship="MentorConnectModel.FK_Mentorship_Mentorship_subject" FromRole="Mentorship" ToRole="subject" />
+    <NavigationProperty Name="MentorScheduleRequests" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Mentorship" FromRole="Mentorship" ToRole="MentorScheduleRequest" />
+  </EntityType>
+  <EntityType Name="StudentProfile">
+    <Key>
+      <PropertyRef Name="fk_student_id" />
+    </Key>
+    <Property Name="fk_student_id" Type="Int32" Nullable="false" />
+    <Property Name="imgPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="clas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.FK_StudentProfile_Student" FromRole="StudentProfile" ToRole="User" />
+    <NavigationProperty Name="StudentSchedules" Relationship="Self.FK_StudentSchedule_student" FromRole="StudentProfile" ToRole="StudentSchedule" />
+    <NavigationProperty Name="MentorScheduleRequests" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Student" FromRole="StudentProfile" ToRole="MentorScheduleRequest" />
+  </EntityType>
+  <EntityType Name="StudentSchedule">
+    <Key>
+      <PropertyRef Name="fk_student_Id" />
+      <PropertyRef Name="fk_day_Id" />
+      <PropertyRef Name="fk_time_id" />
+    </Key>
+    <Property Name="fk_student_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_day_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_time_id" Type="Int32" Nullable="false" />
+    <Property Name="fk_mentorship_id" Type="Int32" />
+    <NavigationProperty Name="Mentorship" Relationship="Self.FK_StudentSchedule_Mentorship" FromRole="StudentSchedule" ToRole="Mentorship" />
+    <NavigationProperty Name="StudentProfile" Relationship="Self.FK_StudentSchedule_student" FromRole="StudentSchedule" ToRole="StudentProfile" />
+    <NavigationProperty Name="weekday" Relationship="Self.FK_StudentSchedule_day" FromRole="StudentSchedule" ToRole="weekday" />
+    <NavigationProperty Name="time" Relationship="Self.FK_StudentSchedule_time" FromRole="StudentSchedule" ToRole="time" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.MentorSubjectMap" FromRole="subject" ToRole="User" />
+    <NavigationProperty Name="Mentorships" Relationship="MentorConnectModel.FK_Mentorship_Mentorship_subject" FromRole="subject" ToRole="Mentorship" />
+  </EntityType>
+  <EntityType Name="time">
+    <Key>
+      <PropertyRef Name="timeid" />
+    </Key>
+    <Property Name="timeid" Type="Int32" Nullable="false" />
+    <Property Name="starttime" Type="Time" Nullable="false" Precision="0" />
+    <NavigationProperty Name="MentorSchedules" Relationship="Self.FK_MentorSchedule_time" FromRole="time" ToRole="MentorSchedule" />
+    <NavigationProperty Name="StudentSchedules" Relationship="Self.FK_StudentSchedule_time" FromRole="time" ToRole="StudentSchedule" />
+    <NavigationProperty Name="MentorScheduleRequests" Relationship="MentorConnectModel.FK_MentorScheduleRequest_time" FromRole="time" ToRole="MentorScheduleRequest" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="addr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="addr2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="user_type" Type="Int32" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="MentorProfile" Relationship="Self.fk_mentorProfileID" FromRole="User" ToRole="MentorProfile" />
+    <NavigationProperty Name="Mentorships" Relationship="Self.FK_Mentorship_Student" FromRole="User" ToRole="Mentorship" />
+    <NavigationProperty Name="StudentProfile" Relationship="Self.FK_StudentProfile_Student" FromRole="User" ToRole="StudentProfile" />
+    <NavigationProperty Name="subjects" Relationship="Self.MentorSubjectMap" FromRole="User" ToRole="subject" />
+    <NavigationProperty Name="UserImage" Relationship="MentorConnectModel.FK_UserImageUser" FromRole="User" ToRole="UserImage" />
+  </EntityType>
+  <EntityType Name="weekday">
+    <Key>
+      <PropertyRef Name="dayid" />
+    </Key>
+    <Property Name="dayid" Type="Int32" Nullable="false" />
+    <Property Name="dayname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MentorSchedules" Relationship="Self.FK_MentorSchedule_day" FromRole="weekday" ToRole="MentorSchedule" />
+    <NavigationProperty Name="StudentSchedules" Relationship="Self.FK_StudentSchedule_day" FromRole="weekday" ToRole="StudentSchedule" />
+    <NavigationProperty Name="MentorScheduleRequests" Relationship="MentorConnectModel.FK_MentorScheduleRequest_day" FromRole="weekday" ToRole="MentorScheduleRequest" />
+  </EntityType>
+  <Association Name="fk_mentorProfileID">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MentorProfile" Type="Self.MentorProfile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MentorProfile">
+        <PropertyRef Name="fk_mentor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorSchedule_mentor">
+    <End Role="MentorProfile" Type="Self.MentorProfile" Multiplicity="1" />
+    <End Role="MentorSchedule" Type="Self.MentorSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MentorProfile">
+        <PropertyRef Name="fk_mentor_ID" />
+      </Principal>
+      <Dependent Role="MentorSchedule">
+        <PropertyRef Name="fk_mentor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mentorship_Mentor">
+    <End Role="MentorProfile" Type="Self.MentorProfile" Multiplicity="1" />
+    <End Role="Mentorship" Type="Self.Mentorship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MentorProfile">
+        <PropertyRef Name="fk_mentor_ID" />
+      </Principal>
+      <Dependent Role="Mentorship">
+        <PropertyRef Name="fk_mentorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorSchedule_day">
+    <End Role="weekday" Type="Self.weekday" Multiplicity="1" />
+    <End Role="MentorSchedule" Type="Self.MentorSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weekday">
+        <PropertyRef Name="dayid" />
+      </Principal>
+      <Dependent Role="MentorSchedule">
+        <PropertyRef Name="fk_day_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorSchedule_Mentorship">
+    <End Role="Mentorship" Type="Self.Mentorship" Multiplicity="0..1" />
+    <End Role="MentorSchedule" Type="Self.MentorSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mentorship">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MentorSchedule">
+        <PropertyRef Name="fk_mentorship_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorSchedule_time">
+    <End Role="time" Type="Self.time" Multiplicity="1" />
+    <End Role="MentorSchedule" Type="Self.MentorSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="time">
+        <PropertyRef Name="timeid" />
+      </Principal>
+      <Dependent Role="MentorSchedule">
+        <PropertyRef Name="fk_time_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mentorship_Student">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Mentorship" Type="Self.Mentorship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Mentorship">
+        <PropertyRef Name="fk_studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSchedule_Mentorship">
+    <End Role="Mentorship" Type="Self.Mentorship" Multiplicity="0..1" />
+    <End Role="StudentSchedule" Type="Self.StudentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mentorship">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StudentSchedule">
+        <PropertyRef Name="fk_mentorship_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentProfile_Student">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="StudentProfile" Type="Self.StudentProfile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentProfile">
+        <PropertyRef Name="fk_student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSchedule_student">
+    <End Role="StudentProfile" Type="Self.StudentProfile" Multiplicity="1" />
+    <End Role="StudentSchedule" Type="Self.StudentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentProfile">
+        <PropertyRef Name="fk_student_id" />
+      </Principal>
+      <Dependent Role="StudentSchedule">
+        <PropertyRef Name="fk_student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSchedule_day">
+    <End Role="weekday" Type="Self.weekday" Multiplicity="1" />
+    <End Role="StudentSchedule" Type="Self.StudentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weekday">
+        <PropertyRef Name="dayid" />
+      </Principal>
+      <Dependent Role="StudentSchedule">
+        <PropertyRef Name="fk_day_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSchedule_time">
+    <End Role="time" Type="Self.time" Multiplicity="1" />
+    <End Role="StudentSchedule" Type="Self.StudentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="time">
+        <PropertyRef Name="timeid" />
+      </Principal>
+      <Dependent Role="StudentSchedule">
+        <PropertyRef Name="fk_time_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MentorSubjectMap">
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <End Role="subject" Type="Self.subject" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DBMentorConnect" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MentorProfiles" EntityType="Self.MentorProfile" />
+    <EntitySet Name="MentorSchedules" EntityType="Self.MentorSchedule" />
+    <EntitySet Name="Mentorships" EntityType="Self.Mentorship" />
+    <EntitySet Name="StudentProfiles" EntityType="Self.StudentProfile" />
+    <EntitySet Name="StudentSchedules" EntityType="Self.StudentSchedule" />
+    <EntitySet Name="subjects" EntityType="Self.subject" />
+    <EntitySet Name="times" EntityType="Self.time" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="weekdays" EntityType="Self.weekday" />
+    <AssociationSet Name="fk_mentorProfileID" Association="Self.fk_mentorProfileID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MentorProfile" EntitySet="MentorProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorSchedule_mentor" Association="Self.FK_MentorSchedule_mentor">
+      <End Role="MentorProfile" EntitySet="MentorProfiles" />
+      <End Role="MentorSchedule" EntitySet="MentorSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mentorship_Mentor" Association="Self.FK_Mentorship_Mentor">
+      <End Role="MentorProfile" EntitySet="MentorProfiles" />
+      <End Role="Mentorship" EntitySet="Mentorships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorSchedule_day" Association="Self.FK_MentorSchedule_day">
+      <End Role="weekday" EntitySet="weekdays" />
+      <End Role="MentorSchedule" EntitySet="MentorSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorSchedule_Mentorship" Association="Self.FK_MentorSchedule_Mentorship">
+      <End Role="Mentorship" EntitySet="Mentorships" />
+      <End Role="MentorSchedule" EntitySet="MentorSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorSchedule_time" Association="Self.FK_MentorSchedule_time">
+      <End Role="time" EntitySet="times" />
+      <End Role="MentorSchedule" EntitySet="MentorSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mentorship_Student" Association="Self.FK_Mentorship_Student">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Mentorship" EntitySet="Mentorships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSchedule_Mentorship" Association="Self.FK_StudentSchedule_Mentorship">
+      <End Role="Mentorship" EntitySet="Mentorships" />
+      <End Role="StudentSchedule" EntitySet="StudentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentProfile_Student" Association="Self.FK_StudentProfile_Student">
+      <End Role="User" EntitySet="Users" />
+      <End Role="StudentProfile" EntitySet="StudentProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSchedule_student" Association="Self.FK_StudentSchedule_student">
+      <End Role="StudentProfile" EntitySet="StudentProfiles" />
+      <End Role="StudentSchedule" EntitySet="StudentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSchedule_day" Association="Self.FK_StudentSchedule_day">
+      <End Role="weekday" EntitySet="weekdays" />
+      <End Role="StudentSchedule" EntitySet="StudentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSchedule_time" Association="Self.FK_StudentSchedule_time">
+      <End Role="time" EntitySet="times" />
+      <End Role="StudentSchedule" EntitySet="StudentSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="MentorSubjectMap" Association="Self.MentorSubjectMap">
+      <End Role="User" EntitySet="Users" />
+      <End Role="subject" EntitySet="subjects" />
+    </AssociationSet>
+    <EntitySet Name="MentorResumes" EntityType="MentorConnectModel.MentorResume" />
+    <EntitySet Name="UserImages" EntityType="MentorConnectModel.UserImage" />
+    <AssociationSet Name="FK_MentorResumeMentorProfile" Association="MentorConnectModel.FK_MentorResumeMentorProfile">
+      <End Role="MentorProfile" EntitySet="MentorProfiles" />
+      <End Role="MentorResume" EntitySet="MentorResumes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserImageUser" Association="MentorConnectModel.FK_UserImageUser">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserImage" EntitySet="UserImages" />
+    </AssociationSet>
+    <EntitySet Name="Reviews" EntityType="MentorConnectModel.Review" />
+    <AssociationSet Name="FK_ReviewMentorship" Association="MentorConnectModel.FK_ReviewMentorship">
+      <End Role="Mentorship" EntitySet="Mentorships" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mentorship_Mentorship_subject" Association="MentorConnectModel.FK_Mentorship_Mentorship_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="Mentorship" EntitySet="Mentorships" />
+    </AssociationSet>
+    <EntitySet Name="MentorScheduleRequests" EntityType="MentorConnectModel.MentorScheduleRequest" />
+    <AssociationSet Name="FK_MentorScheduleRequest_Mentor" Association="MentorConnectModel.FK_MentorScheduleRequest_Mentor">
+      <End Role="MentorProfile" EntitySet="MentorProfiles" />
+      <End Role="MentorScheduleRequest" EntitySet="MentorScheduleRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorScheduleRequest_day" Association="MentorConnectModel.FK_MentorScheduleRequest_day">
+      <End Role="weekday" EntitySet="weekdays" />
+      <End Role="MentorScheduleRequest" EntitySet="MentorScheduleRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorScheduleRequest_Mentorship" Association="MentorConnectModel.FK_MentorScheduleRequest_Mentorship">
+      <End Role="Mentorship" EntitySet="Mentorships" />
+      <End Role="MentorScheduleRequest" EntitySet="MentorScheduleRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorScheduleRequest_Student" Association="MentorConnectModel.FK_MentorScheduleRequest_Student">
+      <End Role="StudentProfile" EntitySet="StudentProfiles" />
+      <End Role="MentorScheduleRequest" EntitySet="MentorScheduleRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MentorScheduleRequest_time" Association="MentorConnectModel.FK_MentorScheduleRequest_time">
+      <End Role="time" EntitySet="times" />
+      <End Role="MentorScheduleRequest" EntitySet="MentorScheduleRequests" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MentorResume">
+    <Key>
+      <PropertyRef Name="fk_mentorId" />
+    </Key>
+    <Property Name="fk_mentorId" Type="Int32" Nullable="false" />
+    <Property Name="filePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MentorProfile" Relationship="MentorConnectModel.FK_MentorResumeMentorProfile" FromRole="MentorResume" ToRole="MentorProfile" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="fk_userId" />
+    </Key>
+    <Property Name="fk_userId" Type="Int32" Nullable="false" />
+    <Property Name="imagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contentType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="MentorConnectModel.FK_UserImageUser" FromRole="UserImage" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_MentorResumeMentorProfile">
+    <End Type="MentorConnectModel.MentorProfile" Role="MentorProfile" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorResume" Role="MentorResume" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MentorProfile">
+        <PropertyRef Name="fk_mentor_ID" />
+      </Principal>
+      <Dependent Role="MentorResume">
+        <PropertyRef Name="fk_mentorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserImageUser">
+    <End Type="MentorConnectModel.User" Role="User" Multiplicity="1" />
+    <End Type="MentorConnectModel.UserImage" Role="UserImage" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserImage">
+        <PropertyRef Name="fk_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="fk_mentorshipId" />
+    </Key>
+    <Property Name="fk_mentorshipId" Type="Int32" Nullable="false" />
+    <Property Name="rating" Type="Double" Nullable="false" />
+    <Property Name="comments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mentorship" Relationship="MentorConnectModel.FK_ReviewMentorship" FromRole="Review" ToRole="Mentorship" />
+  </EntityType>
+  <Association Name="FK_ReviewMentorship">
+    <End Type="MentorConnectModel.Mentorship" Role="Mentorship" Multiplicity="1" />
+    <End Type="MentorConnectModel.Review" Role="Review" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Mentorship">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="fk_mentorshipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mentorship_Mentorship_subject">
+    <End Type="MentorConnectModel.subject" Role="subject" Multiplicity="1" />
+    <End Type="MentorConnectModel.Mentorship" Role="Mentorship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Mentorship">
+        <PropertyRef Name="fk_subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MentorScheduleRequest">
+    <Key>
+      <PropertyRef Name="fk_mentor_Id" />
+      <PropertyRef Name="fk_day_Id" />
+      <PropertyRef Name="fk_time_id" />
+      <PropertyRef Name="fk_mentorship_id" />
+      <PropertyRef Name="fk_student_Id" />
+    </Key>
+    <Property Name="fk_mentor_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_day_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_time_id" Type="Int32" Nullable="false" />
+    <Property Name="isRequested" Type="Int32" Nullable="false" />
+    <Property Name="fk_mentorship_id" Type="Int32" Nullable="false" />
+    <Property Name="fk_student_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MentorProfile" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Mentor" FromRole="MentorScheduleRequest" ToRole="MentorProfile" />
+    <NavigationProperty Name="weekday" Relationship="MentorConnectModel.FK_MentorScheduleRequest_day" FromRole="MentorScheduleRequest" ToRole="weekday" />
+    <NavigationProperty Name="Mentorship" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Mentorship" FromRole="MentorScheduleRequest" ToRole="Mentorship" />
+    <NavigationProperty Name="StudentProfile" Relationship="MentorConnectModel.FK_MentorScheduleRequest_Student" FromRole="MentorScheduleRequest" ToRole="StudentProfile" />
+    <NavigationProperty Name="time" Relationship="MentorConnectModel.FK_MentorScheduleRequest_time" FromRole="MentorScheduleRequest" ToRole="time" />
+  </EntityType>
+  <Association Name="FK_MentorScheduleRequest_Mentor">
+    <End Type="MentorConnectModel.MentorProfile" Role="MentorProfile" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorScheduleRequest" Role="MentorScheduleRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MentorProfile">
+        <PropertyRef Name="fk_mentor_ID" />
+      </Principal>
+      <Dependent Role="MentorScheduleRequest">
+        <PropertyRef Name="fk_mentor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorScheduleRequest_day">
+    <End Type="MentorConnectModel.weekday" Role="weekday" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorScheduleRequest" Role="MentorScheduleRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weekday">
+        <PropertyRef Name="dayid" />
+      </Principal>
+      <Dependent Role="MentorScheduleRequest">
+        <PropertyRef Name="fk_day_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorScheduleRequest_Mentorship">
+    <End Type="MentorConnectModel.Mentorship" Role="Mentorship" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorScheduleRequest" Role="MentorScheduleRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mentorship">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MentorScheduleRequest">
+        <PropertyRef Name="fk_mentorship_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorScheduleRequest_Student">
+    <End Type="MentorConnectModel.StudentProfile" Role="StudentProfile" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorScheduleRequest" Role="MentorScheduleRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentProfile">
+        <PropertyRef Name="fk_student_id" />
+      </Principal>
+      <Dependent Role="MentorScheduleRequest">
+        <PropertyRef Name="fk_student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MentorScheduleRequest_time">
+    <End Type="MentorConnectModel.time" Role="time" Multiplicity="1" />
+    <End Type="MentorConnectModel.MentorScheduleRequest" Role="MentorScheduleRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="time">
+        <PropertyRef Name="timeid" />
+      </Principal>
+      <Dependent Role="MentorScheduleRequest">
+        <PropertyRef Name="fk_time_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

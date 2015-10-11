@@ -1,0 +1,53 @@
+﻿@model MentorConnect.Models.MentorList
+@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/MentorIndex")
+@Scripts.Render("~/bundles/mentorIndex")
+<div id="stabs">
+    <div class="headDiv">
+        <ul>
+            <li>
+                <a href="#mentorContainer" onclick="DisplayAllAvailableMentors()">Mentor Search</a>
+            </li>
+            <li>
+                <a href="#mshipListDiv" onclick="DisplayAllMentorShips()">Your Mentorships</a>
+            </li>
+            <li>
+                <a href="#ManageAccount" onclick="DisplayManageAccount()">Manage Account</a>
+            </li>
+        </ul>
+    </div>
+    <div class="mentorContainer" id="mentorContainer">
+        <div class="allMentors">
+            <div class="indexTitle">Choose your Mentor!</div>
+            <div id="mentorList">
+                @Html.Partial("MentorList", Model._mentorList)
+            </div>
+        </div>
+        <div class="subSearch">
+            <span id="searchDivTitle">Search mentors by subject:</span>
+            <fieldset>
+                <table cellspacing="5" border="0">
+                    <tr>
+                        <td>
+                            <select id="subSearch" class="ui-widget ui-corner-all"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" id="subSubmit" value="search" onclick="fetchMentors()" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+
+    <div id="mshipListDiv">
+
+    </div>
+    <div id="ManageAccount">
+
+    </div>
+</div>

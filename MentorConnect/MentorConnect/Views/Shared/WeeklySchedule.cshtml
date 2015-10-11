@@ -1,0 +1,136 @@
+﻿@model MentorConnect.Models.MentorScheduleModel
+@{
+    ViewBag.Title = "Schedule";
+    Layout = null;
+}
+@Styles.Render("~/Content/MentorScheduleDialog")
+
+
+<div>
+    <div class="mtrDetails_d">
+        <table class="mtrDetailsTbl_d">
+            <tr>                
+                <td>Subject: @Model.subjectName @Html.HiddenFor(m => m.subject, new { id = "subId" })</td>
+            </tr>            
+        </table>
+    </div>
+    
+    @Html.HiddenFor(m => m._mentorId, new { id = "mid" })
+    @Html.HiddenFor(m => m.studentId, new { id = "sid" })
+    @Html.HiddenFor(m => m.mentorShipID, new { id = "mshipid" })
+</div>
+
+
+<div class="tblSch_d">
+    <div>
+        <div class="key1_d"></div>Scheduled
+    </div>
+    <table class="scheduleTable_d">
+        <tr><th></th><th>10:00 AM</th><th>11:00 AM</th><th>12:00 PM</th><th>1:00 PM</th><th>02:00 PM</th><th>03:00 PM</th><th>04:00 PM</th><th>05:00 PM</th><th>06:00 PM</th><th>07:00 PM</th><th>08:00 PM</th><th>09:00 PM</th><th>10:00 PM</th></tr>
+        <tr>
+            <td>Sun</td>
+            @for (int i = 0; i < Model._schedule[0]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[0]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Mon</td>
+            @for (int i = 0; i < Model._schedule[1]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[1]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Tue</td>
+            @for (int i = 0; i < Model._schedule[2]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[2]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Wed</td>
+            @for (int i = 0; i < Model._schedule[3]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[3]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Thu</td>
+            @for (int i = 0; i < Model._schedule[4]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[4]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Fri</td>
+            @for (int i = 0; i < Model._schedule[5]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[5]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+        <tr>
+            <td>Sat </td>
+            @for (int i = 0; i < Model._schedule[6]._timeandRequest.Count; i++)
+            {
+                if (Model._schedule[6]._timeandRequest[i].isRequested == 0)
+                {
+                    <td><input type="button" class="notAvailBtn_d" /></td>
+                }
+                else
+                {
+                    <td><input type="button" class="AvailBtn_d" /></td>
+                }
+
+            }
+        </tr>
+    </table>
+</div>

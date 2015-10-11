@@ -1,0 +1,26 @@
+﻿
+.schRequestTable{
+    border-collapse:collapse;    
+}
+.schReqTh{
+    border:1px solid;    
+    width:200px;  
+    text-align:center;  
+}
+
+.editProfLink{
+    float:right;
+}
+.resDiv{
+    padding-top:30px;
+}
+.titleLabelReq{
+    font-size:20pt;
+    font-weight:bold;
+    padding:5px;
+}
+.mentorheadLinks{
+    width:400px;
+    float:right;
+}
+

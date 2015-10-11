@@ -1,0 +1,110 @@
+﻿.mentorContainer{
+    width: 1300px;
+    margin-top:15px;
+    margin-left:120px;
+    margin-right:100px;    
+    overflow:auto;
+    display:block;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.allMentors{
+    float:left;
+    width:530px;
+    height:100%;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.subSearch{
+    height:150px;
+    float:right;
+    width:400px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.indexTitle{
+    font-size:25pt;
+    padding-bottom:10px;
+}
+
+.mentorContent{
+    padding-bottom:20px;
+    width:100%;
+    min-height:240px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.imgDiv{
+    float:left;
+    width:30%;
+}
+img{
+    width:145px;
+    height:145px;
+}
+.mentorDetails{
+    width:70%;
+    float:right;
+}
+
+#mentorName{
+    font-size:25px;
+    color:#AC258F;
+    width:inherit;
+}
+.mentorDetailsTable{
+    border-collapse:collapse;
+    border-spacing:5px;
+    width:100%;
+    }
+
+.titleLabel{
+    font-size:15pt;
+    font-weight:bold;
+    width:20%;
+}
+
+.columnContent{
+    font-size:15pt;
+    width:80%;
+}
+
+fieldset { border: none }
+
+#search-form {
+	width: 190px;
+	position: relative;
+}
+
+#subSearch{
+    
+}
+#subSubmit {
+	
+}
+
+.empty {
+	color: #524630;
+}
+
+#searchDivTitle{
+    font-size:15pt;
+    font-weight:bold;
+}
+
+#search-submit:hover{
+    cursor:pointer;
+}
+
+.titleLabelReq{
+    font-size:20pt;
+    font-weight:bold;
+    padding:5px;
+}

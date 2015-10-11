@@ -1,0 +1,78 @@
+﻿@model MentorConnect.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/login")
+<div class="container">
+    <div class="mainContainer">
+        <div id="companyLogo">
+            <img src="~/Images/MentorConnect.png" class="mainLogo"/>
+        </div>
+        <div id="companySlogam">
+            <span>SUCCESS STARTS NOW!!</span>
+            <span>MentorConnect connects students with top tutors at UTD to achieve academic success</span>
+        </div>
+    </div>
+
+    <div class="loginForm">        
+        <div class="loginContainer">            
+            <span class="loginTitle">Sign in to Mentor Connect</span>
+            @using (Html.BeginForm(new { id = "loginForm" }))
+            {
+                @Html.ValidationSummary(true)
+                <table>
+                    <tr>
+                        <td>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "loginText", @placeholder = "User Name", id = "username" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "validationError" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.PasswordFor(m => m.Password, new { @class = "loginText", @placeholder = "Password" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validationError" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.RadioButtonFor(m => m.isMentor,"true", new { @class = "",Checked = "checked" }) Mentor
+                            @Html.RadioButtonFor(m => m.isMentor, "false", new { @class = "" }) Student
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validationError" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Log in" class="primaryButton" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span class="registerLink"> Don't have an account? <a href='@Url.Action("Register","Account")'>Register here</a></span>
+                        </td>
+                    </tr>
+                </table>
+
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/login")
+}

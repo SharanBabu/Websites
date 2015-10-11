@@ -1,0 +1,40 @@
+﻿.loginContainer{
+    border-left:2px solid #F28AB9;
+    padding-left:15px;    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */   
+}
+
+.mainLogo{
+    width:420px;
+    height:340px;
+}
+
+.loginTitle{
+    color:#555555;
+    padding-left:10px;
+    font-weight:bold;
+    font-size:17pt;
+}
+
+#companyLogo
+{
+    float:left;
+    width:60%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */  
+}
+
+#companySlogam{
+    font-style:italic;
+    font-size:25pt;
+    color:#555555;
+    padding:5px;
+    float:right;
+    width:40%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */  
+}

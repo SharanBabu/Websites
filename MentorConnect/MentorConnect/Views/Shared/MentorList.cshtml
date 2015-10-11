@@ -1,0 +1,29 @@
+﻿@model MentorConnect.Models.MentorSearchResults
+
+@{
+    Layout = null;
+}
+
+@foreach (var mentor in Model._mentorSearchResults)
+{
+    <div class="mentorContent">
+        <div class="imgDiv"><img src="@mentor._imagePath" /></div>
+        <div class="mentorDetails">
+            <div id="mentorName"><a href="@Url.Action("DisplayMentorSchedule", "Student", new { mentorid = mentor._id })">@mentor._userName</a></div>
+            <table class="mentorDetailsTable">
+                <tr>
+                    <td class="titleLabel">Major </td>
+                    <td class="columnContent">@mentor.major</td>
+                </tr>
+                <tr>
+                    <td class="titleLabel">Subjects </td>
+                    <td class="columnContent">@mentor.ListSubjects</td>
+                </tr>
+                <tr>
+                    <td class="titleLabel">About </td>
+                    <td class="columnContent">@mentor.description</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
