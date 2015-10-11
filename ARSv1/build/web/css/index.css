@@ -1,0 +1,246 @@
+
+body{
+    font-family: "calibri";
+    src: url("fonts/Calibri.ttf");
+}
+
+.link{
+    color: #6A1D7B;
+    text-decoration: none;
+}
+a.link:hover
+{
+    color:#9761A3;
+}
+a.link:active
+{
+    color:#9761A3;
+}
+.bannerhead{
+    height: 62px;
+    background-color: #6A1D7B;
+    width:100%;
+    padding-left: 50px;
+    padding-top: 10px;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.logoDiv{
+    font-size: 25pt;
+    font-weight: bold;
+    color: #FFFFFF;
+    width: 85%;
+    float:left;
+}
+.welcomeMsg{
+    padding-top: 30px;
+    color: #FFFFFF;
+    float: right;
+    width:15%;
+}
+.tChar{
+    font-size:33pt;
+}
+.optionsTable{
+    padding-left: 0px;
+}
+.optionsDiv{
+    width: 25%;
+    float: left;
+    color: #6A1D7B;
+    padding-left: 25px;
+    padding-top: 70px;
+    font-size: 25pt;  
+    height:565px;    
+    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.tabContainer{
+    float:right;
+    width: 75%;
+    height:595px;
+    background-color: #e6e6e6;
+    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.searchDiv{
+    width:100%;
+    height:80px;
+    background-color: #6A1D7B;    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.textBoxHeading{
+    font-size: 12pt;  
+    color:#FFFFFF;
+}
+
+.fromSearch{
+    width:310px;
+    float:left;    
+    padding-top: 11px;
+    padding-left: 15px;        
+}
+.toSearch{
+    width:310px;
+    float:left;       
+    padding-top: 11px;
+    padding-left: 15px;      
+}
+.maxStopsDiv{
+    width:80px;  
+    float:left;
+    padding-top: 11px;    
+    padding-left: 15px;        
+}
+
+.numSelect{
+    height:28px;   
+    text-align: center;
+}
+.searchContent{
+    width:750px;
+    height:100%;
+    float:left;     
+   
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.searchButtonDiv{
+    width: 242px;
+    height:100%;
+    float:right;
+    
+    padding-left: 10px;
+    padding-top: 30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.searchButton{    
+    height:34px;
+    color:#6A1D7B;
+    font-weight: bold;
+}
+.custom-combobox {
+    position: relative;
+    display: inline-block;    
+  }
+  
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+    width:250px;
+  }
+  
+  .custom-combobox-button{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  
+  .ui-widget{
+      font-family: "calibri";
+      src: url("fonts/Calibri.ttf");
+  }
+  
+  .flightResults{
+      margin-top: 5px;
+    border-spacing: 0;
+    border-collapse: collapse;    
+  }   
+  
+  .eachOptionTable{
+      width:100%;
+      border-bottom: 1px solid;
+      border-color: #6A1D7B;
+      color:#000000;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+  .eachOptionTable td{
+      border:none;
+      padding-left: 10px;
+      text-align: left;
+  }
+  .flInstTable{
+      width:100%;      
+      border-color: #6A1D7B;
+      color:#000000;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+  .flInstTable td{
+      border:none;
+      padding: 10px;
+      text-align: left;
+  }
+  .fareTable{
+      width:100%;      
+      border-color: #6A1D7B;
+      color:#000000;      
+      border-spacing: 0;  
+      border-collapse: collapse;
+  }
+  .fareTable th{
+       border:1pt solid;
+      padding: 4px;
+      text-align: center;
+  }
+  .fareTable td{
+       border:1pt solid;
+      padding: 4px;
+      text-align: center;
+  }
+  .seatRes{
+      padding: 20px;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
+  }
+  .col1{
+      width:45%;
+  }
+  .col2{
+      width:10%;
+  }
+  .col3{
+      width:45%;
+  }
+  .col4{
+      width:20%;
+  }
+  .col5{
+      width:20%;
+  }
+  .col6{
+      width:30%;
+  }
+  .col7{
+      width:30%;
+  }
+  .resultsDiv{
+      font-size: 12pt;
+      border: 1px solid;
+      border-color: #6A1D7B;
+      height:510px;
+      overflow-y: auto;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
+  }
+    
